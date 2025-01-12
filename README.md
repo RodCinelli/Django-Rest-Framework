@@ -27,9 +27,8 @@ Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciam
 
 3. **Configurar o Poetry no PATH**
    ```powershell
-   [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\[SEU_USUARIO]\AppData\Roaming\Python\Scripts", "User")
+   [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\rodap\AppData\Roaming\Python\Scripts", "User")
    ```
-   - Substitua [SEU_USUARIO] pelo seu nome de usuário do Windows
    - Feche e reabra o terminal após este comando
 
 ## Clonando e Configurando o Projeto
@@ -49,6 +48,7 @@ Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciam
    ```powershell
    poetry shell
    ```
+   > **Importante**: Este projeto usa o Poetry para gerenciar o ambiente virtual. NÃO use `.\venv\Scripts\activate`, pois o Poetry gerencia seu próprio ambiente virtual.
 
 4. **Aplicar as migrações**
    ```powershell
