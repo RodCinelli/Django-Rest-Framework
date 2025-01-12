@@ -73,7 +73,26 @@ Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciam
 O projeto está organizado em duas principais apps:
 
 - `product/`: Gerenciamento de produtos e categorias
+  - `models/`: Modelos de dados (Category, Product)
+  - `serializers/`: Serializadores para API REST
+  - `tests.py`: Testes unitários
+  - `admin.py`: Configuração do admin
+
 - `order/`: Gerenciamento de pedidos
+  - `models/`: Modelos de dados
+  - `serializers/`: Serializadores para API REST
+
+## Testes
+
+Para executar os testes unitários:
+```powershell
+poetry run python manage.py test
+```
+
+Para testar uma app específica:
+```powershell
+poetry run python manage.py test product
+```
 
 ## Endpoints da API
 
@@ -90,7 +109,15 @@ Para continuar o desenvolvimento, certifique-se de:
    python manage.py makemigrations
    python manage.py migrate
    ```
-3. Manter o `requirements.txt` atualizado (opcional, já que usamos Poetry):
+3. Executar os testes após alterações:
    ```powershell
-   pip freeze > requirements.txt
+   python manage.py test
    ```
+
+## Dependências Principais
+
+- Django 5.1.4
+- Django REST Framework 3.15.2
+- Factory Boy 3.3.1 (para testes)
+- Pytest 8.3.4
+- Black 24.10.0 (formatação de código)
