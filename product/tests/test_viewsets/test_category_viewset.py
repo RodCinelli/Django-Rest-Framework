@@ -10,7 +10,9 @@ class CategoryViewSet(APITestCase):
     client = APIClient()
 
     def setUp(self):
-        self.category = CategoryFactory(title='books')
+        self.category = CategoryFactory(
+            title='technology',
+        )
 
     def test_get_all_category(self):
         response = self.client.get(
@@ -19,11 +21,11 @@ class CategoryViewSet(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         category_data = json.loads(response.content)
-        self.assertEqual(category_data[0]['title'], self.category.title)
+        self.assertEqual(category_data['results'][0]['title'], self.category.title)
 
     def test_create_category(self):
         data = json.dumps({
-            'title': 'technology'
+            'title': 'books'
         })
 
         response = self.client.post(
@@ -33,6 +35,6 @@ class CategoryViewSet(APITestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        created_category = Category.objects.get(title='technology')
+        created_category = Category.objects.get(title='books')
 
-        self.assertEqual(created_category.title, 'technology')
+        self.assertEqual(created_category.title, 'books')
