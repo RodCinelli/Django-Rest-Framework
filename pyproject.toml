@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "django-rest-framework"
+name = "bookstore"
 version = "0.1.0"
 description = "Django Rest Framework API"
 authors = ["Rodrigo Cinelli <rodcinelli@gmail.com>"]

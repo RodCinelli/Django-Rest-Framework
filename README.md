@@ -36,7 +36,7 @@ Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciam
 1. **Clonar o repositório**
    ```powershell
    git clone [URL_DO_REPOSITÓRIO]
-   cd Django-Rest-Framework
+   cd bookstore
    ```
 
 2. **Instalar dependências**
