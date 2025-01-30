@@ -30,7 +30,8 @@ RUN apt-get update \
         build-essential \
         # Dependências para PostgreSQL
         libpq-dev \
-        gcc
+        gcc \
+    && pip install psycopg2
 
 # Instalação moderna do Poetry (método oficial atualizado)
 RUN curl -sSL https://install.python-poetry.org | python - --version ${POETRY_VERSION}
