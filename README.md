@@ -1,35 +1,59 @@
 # Bookstore API
 
-API REST desenvolvida com Django Rest Framework para gerenciamento de uma livraria.
+A Bookstore API é uma API REST desenvolvida com Django REST Framework, destinada ao gerenciamento de uma livraria. Este sistema permite a administração de produtos (livros), categorias e pedidos, oferecendo uma estrutura robusta e escalável para operações CRUD.
 
 ## Sobre o Projeto
 
-Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciamento de produtos (livros), categorias e pedidos.
+A API foi criada para simplificar a gestão de livrarias, permitindo que desenvolvedores integrem facilmente funcionalidades como:
 
-## Requisitos
+- **Gerenciamento de Produtos:** Criação, consulta, atualização e deleção de livros.
+- **Gestão de Categorias:** Organização dos produtos em categorias para facilitar a navegação e filtragem.
+- **Processamento de Pedidos:** Registro e acompanhamento dos pedidos realizados pelos usuários.
+- **Autenticação Segura:** Suporte a autenticação via token, aumentando a segurança dos endpoints.
+
+## Funcionalidades Principais
+
+- **CRUD Completo:** Operações para gerenciar produtos, categorias e pedidos.
+- **Paginação Automática:** Listagem de resultados paginada, facilitando o consumo da API.
+- **Integração com Docker:** Suporte para execução em contêineres via Docker e Docker Compose.
+- **Testes Automatizados:** Cobertura de testes utilizando pytest e ferramentas de qualidade de código como flake8, black e mypy.
+- **CI/CD:** Configurações de integração contínua utilizando GitHub Actions para garantir a qualidade do código.
+
+## Tecnologias Utilizadas
 
 - Python 3.12+
+- Django 5.x
+- Django REST Framework
+- PostgreSQL (opcional – uso de SQLite para desenvolvimento)
 - Poetry (gerenciador de dependências)
+- Docker e Docker Compose
+
+## Pré-requisitos
+
+- Python 3.12 ou superior
+- Poetry
 
 ## Configuração do Ambiente
 
-1. **Instalar o Python 3.12+**
-   - Baixe e instale o Python 3.12 ou superior do [site oficial](https://www.python.org/downloads/)
-   - Verifique a instalação:
-     ```powershell
-     python --version
-     ```
+Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 
-2. **Instalar o Poetry**
+1. **Instalar o Python 3.12+**  
+   Faça o download e instale o Python 3.12 ou superior a partir do [site oficial](https://www.python.org/downloads/).  
+   Verifique a instalação:
+   ```powershell
+   python --version
+   ```
+
+2. **Instalar o Poetry**  
    ```powershell
    (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
    ```
 
-3. **Configurar o Poetry no PATH**
+3. **Configurar o Poetry no PATH**  
    ```powershell
    [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\rodap\AppData\Roaming\Python\Scripts", "User")
-   ```
-   - Feche e reabra o terminal após este comando
+   ```  
+   Após executar este comando, feche e reabra o terminal.
 
 ## Clonando e Configurando o Projeto
 
@@ -39,7 +63,7 @@ Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciam
    cd bookstore
    ```
 
-2. **Instalar dependências**
+2. **Instalar as dependências**
    ```powershell
    poetry install
    ```
@@ -47,10 +71,10 @@ Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciam
 3. **Ativar o ambiente virtual**
    ```powershell
    poetry shell
-   ```
-   > **Importante**: Este projeto usa o Poetry para gerenciar o ambiente virtual. NÃO use `.\venv\Scripts\activate`, pois o Poetry gerencia seu próprio ambiente virtual.
+   ```  
+   > **Importante:** Utilize o ambiente virtual gerenciado pelo Poetry e não o `venv` padrão.
 
-4. **Aplicar as migrações**
+4. **Aplicar as migrações do banco de dados**
    ```powershell
    python manage.py migrate
    ```
@@ -62,35 +86,69 @@ Este projeto é uma API REST para um sistema de livraria, permitindo o gerenciam
 
 ## Executando o Projeto
 
-1. **Iniciar o servidor de desenvolvimento**
+Para iniciar o servidor de desenvolvimento:
+
+```powershell
+python manage.py runserver
+```
+A API estará disponível em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+
+## Utilizando Docker
+
+O projeto conta com suporte a Docker para facilitar a configuração e a execução em ambientes isolados:
+
+1. **Construir e iniciar os containers**
    ```powershell
-   python manage.py runserver
+   docker-compose up -d --build
    ```
-   O servidor estará disponível em `http://127.0.0.1:8000/`
+
+2. **Executar os testes dentro do container**
+   ```powershell
+   docker-compose exec -T web python manage.py test
+   ```
 
 ## Estrutura do Projeto
 
-O projeto está organizado em duas principais apps:
+O projeto está dividido em duas principais aplicações Django:
 
-- `product/`: Gerenciamento de produtos e categorias
-- `order/`: Gerenciamento de pedidos
+- **product/**: Gerencia produtos e categorias.
+- **order/**: Gerencia os pedidos realizados.
 
-## Endpoints da API
-
-- `/admin/`: Interface administrativa do Django
-- `/api/`: Endpoints da API REST (documentação em desenvolvimento)
+Outros pontos importantes:
+- **Admin do Django:** Acesse `/admin/` para utilizar a interface administrativa.
+- **Endpoints da API:** Disponíveis em `/api/` (documentação em desenvolvimento) e para autenticação em `/api-token-auth/`.
 
 ## Desenvolvimento
 
-Para continuar o desenvolvimento, certifique-se de:
+Para contribuir e dar continuidade ao projeto, siga as recomendações abaixo:
 
-1. Sempre ativar o ambiente virtual com `poetry shell`
-2. Aplicar novas migrações após alterações nos modelos:
-   ```powershell
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
-3. Manter o `requirements.txt` atualizado (opcional, já que usamos Poetry):
-   ```powershell
-   pip freeze > requirements.txt
-   ```
+- **Ativação do ambiente virtual**
+  ```powershell
+  poetry shell
+  ```
+- **Migrar alterações nos modelos**
+  ```powershell
+  python manage.py makemigrations
+  python manage.py migrate
+  ```
+- **Manutenção das dependências (opcional)**
+  ```powershell
+  pip freeze > requirements.txt
+  ```
+
+## Testes e Qualidade de Código
+
+O projeto utiliza uma suíte de testes automatizados e ferramentas de linting para garantir a qualidade do código. Para rodar os testes:
+```powershell
+python manage.py test
+```
+Ou, se estiver usando Docker:
+```powershell
+docker-compose exec -T web python manage.py test
+```
+
+## Integração Contínua (CI/CD)
+
+Foram configurados workflows no GitHub Actions para:
+- Realizar testes automatizados.
+- Verificar a qualidade do código com ferramentas de lint (flake8, black, mypy).
