@@ -152,3 +152,11 @@ docker-compose exec -T web python manage.py test
 Foram configurados workflows no GitHub Actions para:
 - Realizar testes automatizados.
 - Verificar a qualidade do código com ferramentas de lint (flake8, black, mypy).
+
+
+## Contato
+
+**Autor:** Rodrigo Cinelli  
+**Email:** rodcinelli@gmail.com  
+
+
