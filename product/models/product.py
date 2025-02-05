@@ -9,6 +9,6 @@ class Product(models.Model):
     active = models.BooleanField(default=True)
     category = models.ManyToManyField(Category, blank=True)
 
-    class Meta:
-        ordering = ['title']
+    def __str__(self):
+        return self.title
 
