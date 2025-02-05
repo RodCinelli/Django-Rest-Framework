@@ -16,6 +16,7 @@ django-extensions = "^3.2.3"
 django-debug-toolbar = "^5.0.1"
 psycopg2-binary = "^2.9.10"
 flake8 = "^7.1.1"
+whitenoise = "^6.8.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.10.0"
