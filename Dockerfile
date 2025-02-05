@@ -54,4 +54,4 @@ RUN chmod +x /app/entrypoint.sh
 
 # Define o entrypoint e o comando padrão
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "bookstore.wsgi:application", "--bind", "0.0.0.0:8000", "--access-logfile", "/dev/null", "--log-level", "warning"]
