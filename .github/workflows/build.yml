@@ -47,7 +47,7 @@ jobs:
 
       # Start Docker Compose and run tests within the container
       - name: Start Docker Compose services
-        run: docker-compose up -d --build
+        run: docker-compose -f docker-compose.test.yml up -d --build
 
       - name: Run Tests
         run: docker-compose exec -T web python manage.py test
