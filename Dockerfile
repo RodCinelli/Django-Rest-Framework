@@ -48,5 +48,10 @@ RUN poetry install --only=main --no-root  # Para produção use --only=main
 WORKDIR /app
 COPY . /app/
 
-EXPOSE 8000
+# Copia o entrypoint e torna-o executável
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Define o entrypoint e o comando padrão
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
